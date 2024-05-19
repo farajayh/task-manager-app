@@ -4,7 +4,7 @@ services:
   task-manager-app:
     build:
       context: .
-      dockerfile: ./Dockerfile  # Ensure the Dockerfile name is correct
+      dockerfile: ./dockerfile
     image: task-manager-app
     ports:
       - "80:8080"
@@ -17,6 +17,8 @@ services:
       DB_DATABASE: task-manager-app
       DB_USERNAME: laravel-user
       DB_PASSWORD: Pass@@29
+    networks:
+      - my-network  
 
   db:
     image: mariadb:latest
@@ -28,3 +30,9 @@ services:
       MARIADB_PASSWORD: Pass@@29
     ports:
       - "9906:3306"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

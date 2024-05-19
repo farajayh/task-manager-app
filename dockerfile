@@ -5,6 +5,7 @@ WORKDIR /var/www/html
 RUN apt-get update && apt-get install -y \
     git \
     nodejs \
+    npm \
     unzip \
     libpng-dev \
     libjpeg-dev \
@@ -14,7 +15,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo_mysql zip
 
-Run npm install
 
 RUN docker-php-ext-install sockets
 

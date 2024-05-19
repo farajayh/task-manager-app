@@ -1,37 +1,24 @@
 version: '3.8'
 
-services:
+services:  
   task-manager-app:
     build:
       context: .
       dockerfile: ./dockerfile
+    image: task-manager-app
     ports:
-      - "80:8080"
+      - 80:8080
     depends_on:
-      - mariadb
-    environment:
-      DB_CONNECTION: mysql
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_DATABASE: task-manager-app
-      DB_USERNAME: laravel-user
-      DB_PASSWORD: Pass@@29
-    networks:
-      - my-network  
+      - db
 
-  mariadb:
-    image: mariadb:latest
-    container_name: mariadb
+
+  db:
+    image: mysql:8.0.13
+    command: --default-authentication-plugin=mysql_native_password
     environment:
-      MARIADB_ROOT_PASSWORD: Pass@@29
-      MARIADB_DATABASE: task-manager-app
-      MARIADB_USER: laravel-user
-      MARIADB_PASSWORD: Pass@@29
+      MYSQL_DATABASE: task-manager-app
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password    
     ports:
-      - "9906:3306"
-    networks:
-      - my-network
-
-networks:
-  my-network:
-    driver: bridge
+      - "33006:3306"  

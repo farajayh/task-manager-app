@@ -4,6 +4,7 @@ WORKDIR /var/www/html
 
 RUN apt-get update && apt-get install -y \
     git \
+    nodejs \
     unzip \
     libpng-dev \
     libjpeg-dev \
@@ -25,12 +26,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     && su www-data -s /bin/sh -c 'composer install --no-scripts --no-autoloader' \
     && composer dump-autoload \
     && chown -R root:root /var/www/html \
-    && cp /var/www/.env.example /var/www/html/.env \
     && php artisan key:generate \
     && php artisan jwt:secret \
     && php artisan queue:table \
     && php artisan migrate \
     && php artisan db:seed \
+    && npm run install \
+    && npm run dev \
     && php artisan queue:work
 
 EXPOSE 8080

@@ -5,11 +5,10 @@ services:
     build:
       context: .
       dockerfile: ./dockerfile
-    image: task-manager-app
     ports:
       - "80:8080"
     depends_on:
-      - db
+      - mariadb
     environment:
       DB_CONNECTION: mysql
       DB_HOST: db
@@ -20,7 +19,7 @@ services:
     networks:
       - my-network  
 
-  db:
+  mariadb:
     image: mariadb:latest
     container_name: mariadb
     environment:

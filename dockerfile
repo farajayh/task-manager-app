@@ -29,11 +29,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     && chown -R root:root /var/www/html \
     && php artisan key:generate \
     && php artisan jwt:secret \
-    && php artisan migrate \
-    && php artisan db:seed \
     && npm run install \
     && npm run dev \
-    && php artisan queue:work
 
 EXPOSE 8080
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]

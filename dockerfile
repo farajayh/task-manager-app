@@ -28,7 +28,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     && chown -R root:root /var/www/html \
     && php artisan key:generate \
     && php artisan jwt:secret \
-    && php artisan queue:table \
     && php artisan migrate \
     && php artisan db:seed \
     && npm run install \

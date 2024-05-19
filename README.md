@@ -12,7 +12,7 @@ REST API Documentation: https://documenter.getpostman.com/view/9782302/2sA3QmCZg
 - Clone this repository locally: git clone https://github.com/farajayh/task-manager-app.git
 - CD into the application directory: cd task-manager-app
 - Create the .env file for environment variables: cp .env.example .env
-- Open the .env file and set the database password DB_PASSWORD, you can use any password of your choice
+- Open the .env file with nano or vim and set the database password DB_PASSWORD, you can use any password of your choice
 - In the .env file, set the pusher credentials, PUSHER_APP_ID, PUSHER_APP_KEY, PUSHER_APP_SECRET and PUSHER_APP_CLUSTER
 - Run docker compose command, in detached mode: docker compose up -d
 - Run database migration command: docker compose exec task-manager-app php artisan migrate

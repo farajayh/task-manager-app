@@ -12,7 +12,7 @@ services:
       - db-service
 
 
-  db-service:
+  db:
     image: mariadb:latest
     container_name: mariadb
     environment:

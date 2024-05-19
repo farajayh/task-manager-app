@@ -7,9 +7,15 @@ ENV MYSQL_ROOT_PASSWORD=password
 
 COPY create_database.sql /docker-entrypoint-initdb.d/
 
-RUN echo "[mysqld]
-user=mysql
-bind-address=0.0.0.0
-
-# Configure for Docker networking
+RUN echo "[mysqld]\n\
+user=mysql\n\
+bind-address=0.0.0.0\n\
+\n\
+# Configure for Docker networking\n\
 skip-networking=True" > /etc/mysql/mariadb.conf.d/docker.cnf
+
+# Expose port 3306 to allow access to MariaDB
+EXPOSE 3306
+
+# Define the default command to run MariaDB server
+CMD ["mysqld"]

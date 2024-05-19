@@ -15,10 +15,14 @@ services:
   db:
     image: mariadb:latest
     container_name: mariadb
+    env_file:
+      - .env
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: task-manager-app
-      MYSQL_USER: laravel
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - 9906:3306
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d  

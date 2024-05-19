@@ -29,8 +29,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     && composer dump-autoload \
     && chown -R root:root /var/www/html \
     && php artisan key:generate \
-    && php artisan jwt:secret \
-    && npm install \
+    && php artisan jwt:secret
 
 EXPOSE 8080
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]

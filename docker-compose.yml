@@ -25,4 +25,5 @@ services:
     ports:
       - 9906:3306
     volumes:
-      - ./db-init:/docker-entrypoint-initdb.d  
+      - ./db-init:/docker-entrypoint-initdb.d
+    entrypoint: /bin/bash -c "echo \"CREATE DATABASE IF NOT EXISTS ${DB_PASSWORD}; GRANT ALL PRIVILEGES ON \\\`${DB_DATABASE}\\\`.* TO '${DB_USERNAME}'@'%' IDENTIFIED BY '${DB_PASSWORD}'; FLUSH PRIVILEGES;\" > /docker-entrypoint-initdb.d/init.sql && docker-entrypoint.sh mysqld"    

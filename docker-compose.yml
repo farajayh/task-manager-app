@@ -18,7 +18,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: task-manager-app
-      MYSQL_USER: laravel
+      MYSQL_USER: root
       MYSQL_PASSWORD: password
     ports:
       - 9906:3306

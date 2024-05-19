@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./dockerfile
+    image: task-manager-app
     ports:
       - 80:8080
     depends_on:
@@ -12,11 +13,12 @@ services:
 
 
   db:
-    build:
-      context: .
-      dockerfile: ./db.dockerfile
+    image: mariadb:latest
+    container_name: mariadb
     environment:
-      MYSQL_DATABASE: task-manager-db
-      MYSQL_USERNAME: laravel
-      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: task-manager-app
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: password
+    ports:
+      - 9906:3306

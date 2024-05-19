@@ -1,16 +1,22 @@
 version: '3.8'
 
-services:  
+services:
   task-manager-app:
     build:
       context: .
-      dockerfile: ./dockerfile
+      dockerfile: ./Dockerfile  # Ensure the Dockerfile name is correct
     image: task-manager-app
     ports:
-      - 80:8080
+      - "80:8080"
     depends_on:
       - db
-
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: task-manager-app
+      DB_USERNAME: laravel-user
+      DB_PASSWORD: Pass@@29
 
   db:
     image: mariadb:latest
@@ -18,7 +24,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: Pass@@29
       MARIADB_DATABASE: task-manager-app
-      MARIADB_USER: laravel-uer
+      MARIADB_USER: laravel-user
       MARIADB_PASSWORD: Pass@@29
     ports:
-      - 9906:3306
+      - "9906:3306"

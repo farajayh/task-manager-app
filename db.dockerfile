@@ -5,8 +5,6 @@ ENV MYSQL_USERNAME=laravel
 ENV MYSQL_PASSWORD=password
 ENV MYSQL_ROOT_PASSWORD=password
 
-COPY create_database.sql /docker-entrypoint-initdb.d/
-
 RUN echo "[mysqld]\n\
 user=mysql\n\
 bind-address=0.0.0.0\n\

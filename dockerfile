@@ -30,7 +30,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     && chown -R root:root /var/www/html \
     && php artisan key:generate \
     && php artisan jwt:secret \
-    && npm run install \
+    && npm install \
     && npm run dev \
 
 EXPOSE 8080

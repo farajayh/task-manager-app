@@ -5,7 +5,8 @@ ENV MYSQL_USERNAME=laravel
 ENV MYSQL_PASSWORD=password
 ENV MYSQL_ROOT_PASSWORD=password
 
-RUN echo "[mysqld]\n\
+RUN mkdir -p /etc/mysql/mariadb.conf.d && \
+echo "[mysqld]\n\
 user=mysql\n\
 bind-address=0.0.0.0\n\
 \n\

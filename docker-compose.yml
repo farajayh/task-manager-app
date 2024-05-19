@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  
+  task-manager-app:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    image: task-manager-app
+    ports:
+      - 80:8080
+    depends_on:
+      - db-service
+
+
+  db-service:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: task-manager-app
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+    ports:
+      - "3306:3306

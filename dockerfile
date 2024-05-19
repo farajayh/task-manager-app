@@ -14,6 +14,16 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd pdo_mysql zip
 
 
+# Install necessary dependencies for MariaDB
+RUN apt-get update && apt-get install -y mariadb-server mariadb-client
+
+# Expose MariaDB port
+EXPOSE 3306
+
+# Start MariaDB service
+CMD ["mysqld"]    
+
+
 RUN docker-php-ext-install sockets
 
 COPY composer.lock composer.json ./

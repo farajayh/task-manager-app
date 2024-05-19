@@ -16,9 +16,9 @@ services:
     image: mariadb:latest
     container_name: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD:
-      MYSQL_DATABASE: task-manager-app
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
+      MARIADB_ROOT_PASSWORD: Pass@@29
+      MARIADB_DATABASE: task-manager-app
+      MARIADB_USER: laravel-uer
+      MARIADB_PASSWORD: Pass@@29
     ports:
       - 9906:3306

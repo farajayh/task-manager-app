@@ -26,6 +26,8 @@ The application should be running now. If you are running this on localhost you 
 
 On Creation, update and deletion of tasks, the data is streamed to the frontend in realtime, and the details of the action shows as an alert message.
 
+- To stop the app run: docker compose down
+
 ## Technologies Used
 - PHP 8.2
 - MySQL

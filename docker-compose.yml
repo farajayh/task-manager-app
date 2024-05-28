@@ -6,11 +6,20 @@ services:
       context: .
       dockerfile: ./dockerfile
     image: task-manager-app
-    ports:
-      - 80:8080
     depends_on:
       - db
-
+      - webserver
+  
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/task-manager-app
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx-logs:/var/log/nginx
 
   db:
     image: mariadb:latest

@@ -1,6 +1,7 @@
-FROM php:8.2
+#FROM php:8.2
+FROM php:8.2-fpm
 
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -24,12 +25,13 @@ COPY composer.lock composer.json ./
 COPY . .
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && chown -R www-data:www-data /var/www/html \
+    && chown -R www-data:www-data /var/www \
     && su www-data -s /bin/sh -c 'composer install --no-scripts --no-autoloader' \
     && composer dump-autoload \
-    && chown -R root:root /var/www/html \
+    && chown -R root:root /var/www \
     && php artisan key:generate \
     && php artisan jwt:secret
 
-EXPOSE 8080
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+#EXPOSE 8080
+#CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+CMD ["php-fpm"]

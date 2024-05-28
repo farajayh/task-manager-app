@@ -8,7 +8,6 @@ services:
     image: task-manager-app
     depends_on:
       - db
-      - webserver
   
   webserver:
     image: nginx:alpine
@@ -20,6 +19,8 @@ services:
       - ./:/var/www/task-manager-app
       - ./nginx/conf.d/:/etc/nginx/conf.d/
       - ./nginx-logs:/var/log/nginx
+    depends_on:
+      - task-manager-app  
 
   db:
     image: mariadb:latest

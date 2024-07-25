@@ -169,6 +169,7 @@ class TaskTest extends TestCase
         
         // Assert that the returned response has an error messsage
         $response->assertJson([
+           'status' => false,
            'message' => 'Unauthenticated.'
         ]);
     }    
@@ -335,7 +336,7 @@ class TaskTest extends TestCase
     }
     
     /**
-     * Unaunthenticated user cannot update a task
+     * Unauthenticated user cannot update a task
      */
     public function test_unauthenticated_user_cannot_update_task(): void
     {
@@ -352,6 +353,7 @@ class TaskTest extends TestCase
         
         // Assert that the returned response has an error messsage
         $response->assertJson([
+           'status' => false,
            'message' => 'Unauthenticated.'
         ]);
     }
@@ -381,7 +383,13 @@ class TaskTest extends TestCase
                          ->deleteJson("/api/tasks/$task_id");
         
         // Assert that the response status code is 204                 
-        $response->assertStatus(204);  
+        $response->assertStatus(200);
+        
+        // Assert that the returned response structure matches the expected structure
+        $response->assertJson([
+            'status' => true,
+            'message' => 'Success',
+        ]);
 
         $this->assertDatabaseMissing('tasks', [
             'id' => $task_id,
@@ -417,7 +425,7 @@ class TaskTest extends TestCase
     }
     
     /**
-     * Unaunthenticated user cannot delete a task
+     * Unauthenticated user cannot delete a task
      */
     public function test_unauthenticated_user_cannot_delete_task(): void
     {
@@ -430,6 +438,7 @@ class TaskTest extends TestCase
         
         // Assert that the returned response has an error messsage
         $response->assertJson([
+            'status' => false,
            'message' => 'Unauthenticated.'
         ]);
     }

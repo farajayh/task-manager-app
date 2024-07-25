@@ -14,8 +14,8 @@ REST API Documentation: https://documenter.getpostman.com/view/9782302/2sA3QmCZg
 - Generate application key: php artisan key:generate
 - Generate JWT secret: php artisan jwt:secret
 - Run database migration: php artisan migrate
-- Seed the database: php artisan db:seed
 - To run tests, do: php artisan test
+- Seed the database: php artisan db:seed
 - Run the application: php artisan serve
 
 
